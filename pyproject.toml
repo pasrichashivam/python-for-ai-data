@@ -8,6 +8,7 @@ dependencies = [
     "pydantic>=2.13.4",
     "pydantic-settings>=2.14.2",
     "openai>=1.0",
+    "requests>=2.34.2",
 ]
 
 [dependency-groups]
