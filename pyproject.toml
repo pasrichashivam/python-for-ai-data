@@ -10,6 +10,7 @@ dependencies = [
     "openai>=1.0",
     "requests>=2.34.2",
     "numexpr>=2.14.1",
+    "streamlit>=1.59.1",
 ]
 
 [dependency-groups]

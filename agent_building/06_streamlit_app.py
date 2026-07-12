@@ -12,6 +12,7 @@ import os
 
 import requests
 import streamlit as st
+import numexpr as ne
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -43,7 +44,8 @@ def calculator(expression: str) -> str:
     if not set(expression) <= allowed_characters:
         return f"Rejected -- expression contains disallowed characters: {expression!r}"
     try:
-        return str(eval(expression))
+        result = ne.evaluate(expression)
+        return str(result)
     except Exception as exc:  # noqa: BLE001
         return f"Could not evaluate: {exc}"
 
