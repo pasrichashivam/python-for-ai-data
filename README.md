@@ -6,7 +6,7 @@ This repository contains a curated set of Jupyter notebooks designed to build a 
 - `decorators` and advanced function patterns
 - `pydantic` for validation and data modeling
 - `asyncio` for asynchronous programming  
-- Building <b>AI agents using plain Python</b> without external frameworks
+- `ai-agents` building using plain Python without external frameworks
 
 The notebooks focus on practical examples and runnable code so we can explore and adapt the patterns for Data and AI use cases.
 
@@ -15,7 +15,7 @@ The notebooks focus on practical examples and runnable code so we can explore an
 ```
 [Decorators] --> [Pydantic] --> [Async Python] --> [AI Agents]
       |                |               |                 |                 
-      v                v               v                 v               
+      |                |               |                 |               
    Better            Strong          Concurrent       Framework-
 abstractions        validation       executions      free AI logic
 ```
@@ -52,7 +52,7 @@ pip install -r requirements.txt
 | `01-decorators` | Decorator patterns, higher-order functions, and practical uses in data pipelines and AI|
 | `02-pydantic_models` | Data validation, typed models, settings, and best practices using `pydantic` with AI|
 | `03-async_runs` | Step bt step progess with Async programming with `asyncio`, concurrency patterns |
-| `04-ai-agent_building` | Building simple AI agents and workflows using bare Python logic, without external frameworks |
+| `04-agent_building` | Building simple AI Agentic loop using bare Python logic, without external frameworks |
 
 ## Learning Path
 
