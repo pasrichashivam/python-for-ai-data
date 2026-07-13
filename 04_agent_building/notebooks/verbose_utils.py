@@ -80,3 +80,51 @@ def print_tool_execution(tool_name: str, arguments: dict, result: Any) -> None:
     print(pretty_json(arguments))
     print("\nResult returned by Python:")
     print(result)
+
+
+def print_info_before_llm_call(turn_number, messages, TOOL_SCHEMAS, model):
+    print_separator()
+    print_title(f"AGENT LOOP TURN {turn_number}")
+    print_memory(messages, "Memory BEFORE API call")
+    print_tool_schemas(TOOL_SCHEMAS)
+    print_title("Sending everything to the model")
+    print(f"Model: {model}")
+    print("What the model receives:")
+    print("- conversation memory")
+    print("- tool schemas")
+    print("- max_tokens setting")
+    print("- the current instruction context")
+    print("\nImportant: the model does NOT run Python code.")
+    print("It only decides whether it needs a tool or can answer directly.")
+    print_separator()
+
+def print_memory_state_after_assistant_message(messages):
+    print_title("No tool calls detected")
+    print("The model answered directly, so the loop stops here.")
+    print_memory(messages, "Memory AFTER final assistant answer")
+    print_separator()
+
+def print_memory_state_after_tool_request(messages):
+    print_title("Assistant requested tool call(s)")
+    print("The assistant message has been added to memory.")
+    print("Now Python will inspect each requested tool call and execute it.")
+    print_memory(messages, "Memory AFTER assistant tool request")
+
+def print_tool_call_process(call, TOOLS_BY_NAME):
+    print_title("Processing one tool call")
+    print(f"Tool call id: {call.id}")
+    print(f"Tool name   : {call.function.name}")
+    print(f"Raw args    : {call.function.arguments}")
+    print("Parsed args  :")
+    print(pretty_json(json.loads(call.function.arguments)))
+    print("\nLooking up the tool in TOOLS_BY_NAME...")
+    print(f"Available tools: {list(TOOLS_BY_NAME.keys())}")
+
+def print_memory_state_after_tool_call(messages):
+    print_title("Tool result added to memory")
+    print("The tool output has now been stored as a TOOL message.")
+    print_memory(messages, "Memory AFTER tool result")
+    print("Why do we loop again?")
+    print("Because the model has the tool result only after this step.")
+    print("Now it can read the result and produce the final natural-language answer.")
+    print_separator()
